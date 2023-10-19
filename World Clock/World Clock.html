@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Clock</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #1b1f23;
+            color: #58a6ff;
+        }
+        .clocks-container {
+            display: flex;
+            gap: 20px;
+        }
+        .clock {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 2px solid #58a6ff;
+            margin: 10px;
+            position: relative;
+            background: radial-gradient(circle, rgba(88,166,255,0.1) 0%, rgba(27,31,35,1) 100%);
+            box-shadow: 0px 0px 10px #58a6ff;
+        }
+        .clock h2 {
+            color: #58a6ff;
+            text-align: center;
+            margin-top: 40px;
+            font-size: 20px;
+        }
+        .clock h3 {
+            color: #58a6ff;
+            text-align: center;
+            margin-top: 5px;
+            font-size: 15px;
+            opacity: 0.8;
+        }
+        footer {
+            margin-top: 20px;
+            font-size: 12px;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="clocks-container">
+        <div class="clock" id="newYork">
+            <h2></h2>
+            <h3>New York</h3>
+        </div>
+        <div class="clock" id="losAngeles">
+            <h2></h2>
+            <h3>Los Angeles</h3>
+        </div>
+        <div class="clock" id="taiwan">
+            <h2></h2>
+            <h3>Taiwan</h3>
+        </div>
+        <div class="clock" id="japan">
+            <h2></h2>
+            <h3>Japan</h3>
+        </div>
+    </div>
+    <footer>
+        Copyright Chris Aung 2023
+    </footer>
+
+    <script>
+        function updateTime() {
+            let newYorkTime = new Date().toLocaleTimeString('en-US', { timeZone: 'America/New_York', hour: '2-digit', minute:'2-digit' });
+            let losAngelesTime = new Date().toLocaleTimeString('en-US', { timeZone: 'America/Los_Angeles', hour: '2-digit', minute:'2-digit' });
+            let taiwanTime = new Date().toLocaleTimeString('en-US', { timeZone: 'Asia/Taipei', hour: '2-digit', minute:'2-digit' });
+            let japanTime = new Date().toLocaleTimeString('en-US', { timeZone: 'Asia/Tokyo', hour: '2-digit', minute:'2-digit' });
+
+            document.getElementById('newYork').querySelector('h2').textContent = newYorkTime;
+            document.getElementById('losAngeles').querySelector('h2').textContent = losAngelesTime;
+            document.getElementById('taiwan').querySelector('h2').textContent = taiwanTime;
+            document.getElementById('japan').querySelector('h2').textContent = japanTime;
+        }
+        
+        setInterval(updateTime, 1000);
+        updateTime();
+    </script>
+</body>
+</html>
